@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.slick-next:before,
+.slick-prev:before {
+  color: #5e758b !important;
+  font-size: 30px !important;
+}
+.slick-arrow {
+  background: #ffffff !important;
+  /* top: -20px !important; */
+}
+
+.slick-prev {
+  right: 20px !important;
+  margin: 0 -5px !important;
+}
+
+.recommended-item:not(:last-child) .menuItem {
+  border-bottom: 2px solid #e5e7eb;
+}
+a.active {
+  text-decoration: underline;
+  color: rgb(0, 0, 0);
+}
