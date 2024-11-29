@@ -9,5 +9,5 @@ export const RES_CARD_API =
 export const HOME_IMG_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/";
 
-export const SWIGGY_API_URL = "http://localhost:5000/api/restaurants";
-export const SWIGGY_MENU_URL = "http://localhost:5000/api/menu/";
+export const SWIGGY_API_URL = "https://swiggyapi-eight.vercel.app/api/restaurants";
+export const SWIGGY_MENU_URL = "https://swiggyapi-eight.vercel.app/api/menu/";
