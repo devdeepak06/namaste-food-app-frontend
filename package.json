@@ -33,6 +33,9 @@
     "react-router-dom": "^6.27.0",
     "react-slick": "^0.30.2"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "browserslist": [
     "last 2 versions"
   ]
