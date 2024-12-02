@@ -104,9 +104,9 @@ const RestaurantMenu = () => {
                             ? `₹${(price / 100).toFixed(2)}`
                             : `₹${(defaultPrice / 100).toFixed(2)}`}
                         </div>
-                        <div className="Card_addButton relative bottom-0 text-center text-green-600 bg-white rounded-lg border border-solid w-20 font-bold p-1">
-                          Add
-                        </div>
+                        <button className="Card_addButton relative bottom-0 text-center text-green-600 bg-white rounded-lg border border-solid w-20 font-bold p-1">
+                          Add +
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -158,6 +158,7 @@ const RestaurantMenu = () => {
                                 ratings = {},
                               } = {},
                             },
+                            card,
                           }) => (
                             <RecommendedItem
                               key={id}
@@ -173,6 +174,7 @@ const RestaurantMenu = () => {
                                 ratings.aggregatedRating?.ratingCountV2
                               }
                               MENU_IMG_URL={MENU_IMG_URL}
+                              item={card}
                             />
                           )
                         )}
@@ -211,6 +213,7 @@ const RestaurantMenu = () => {
                                         ratings = {},
                                       } = {},
                                     },
+                                    card,
                                   }) => (
                                     <RecommendedItem
                                       key={id}
@@ -226,6 +229,7 @@ const RestaurantMenu = () => {
                                         ratings.aggregatedRating?.ratingCountV2
                                       }
                                       MENU_IMG_URL={MENU_IMG_URL}
+                                      item={card}
                                     />
                                   )
                                 )}

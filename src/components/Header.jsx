@@ -1,15 +1,24 @@
 import { Link, NavLink } from "react-router-dom";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [login, setLogIn] = useState("Login");
   const isOnline = useOnlineStatus();
+  const { loggedInUser } = useContext(UserContext);
+  useEffect(() => {
+    console.log(loggedInUser);
+  });
+
   const handleLoginButton = () => {
     setLogIn((prevLogin) => (prevLogin === "Login" ? "Logout" : "Login"));
   };
 
+  // Subscribing to the store using a Selector
+  const cartItems = useSelector((store) => store.cart.items);
   return (
-    <div className="z-10 flex items-center justify-between px-2 sticky top-0 gap-5 bg-pink-100 text-gray-800 shadow-lg mb-2 font-bold">
+    <div className="z-10 flex items-center justify-between px-2 sticky top-0 gap-5 bg-pink-100 text-gray-800 shadow-lg mb-2">
       <Link to="/" className="logo" aria-label="Bhojan Bazaar Logo">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +50,7 @@ const Header = () => {
       </Link>
 
       <nav className="navItems">
-        <ul className="flex justify-between gap-5 mx-5 list-none text-lg font-bold items-center">
+        <ul className="flex justify-between gap-5 mx-5 list-none text-lg items-center">
           <li>
             <h2>Online Status: {isOnline ? "✅" : "❌"}</h2>
           </li>
@@ -57,8 +66,8 @@ const Header = () => {
           <li>
             <NavLink to="/grocery">Grocery</NavLink>
           </li>
-          <li>
-            <NavLink to="/cart">Cart</NavLink>
+          <li className="font-bold text-lg">
+            <NavLink to="/cart">Cart - ({cartItems.length} items)</NavLink>
           </li>
           <li>
             <button onClick={handleLoginButton}>{login}</button>

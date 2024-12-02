@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 const RecommendedItem = ({
   id,
   name,
@@ -11,12 +13,21 @@ const RecommendedItem = ({
   description,
   imageId,
   MENU_IMG_URL,
+  item,
 }) => {
   const initialSrc = `${MENU_IMG_URL}${imageId}`;
   const [imageSrc, setImageSrc] = useState(initialSrc);
 
   const handleError = () => {
     setImageSrc(imageSrc);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    //dispatch an action
+    dispatch(addItem(item));
+    console.log(item);
   };
   return (
     <div key={id} className="recommended-item">
@@ -59,10 +70,14 @@ const RecommendedItem = ({
             className="rounded-2xl"
           />
           <div className="flex flex-col items-center justify-center absolute bottom-0 left-0 w-full ">
-            <div className="atcButton -bottom-2 text-center text-green-600 bg-white rounded-lg border border-solid w-1/2 font-bold p-1">
-              Add
-            </div>
-            <span className="customizeText text-xs text-white">
+            <button
+              className="atcButton -bottom-2 text-center text-white bg-black shadow-lg rounded-lg w-1/2 font-bold p-1"
+              // onClick={handleAddItem}
+              onClick={() => handleAddItem(item)}
+            >
+              Add +
+            </button>
+            <span className="customizeText text-xs text-green-600">
               Customisable
             </span>
           </div>
@@ -82,5 +97,15 @@ RecommendedItem.propTypes = {
   description: PropTypes.string,
   imageId: PropTypes.string.isRequired,
   MENU_IMG_URL: PropTypes.string.isRequired,
+  item: PropTypes.shape({
+    info: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      name: PropTypes.string,
+      price: PropTypes.number,
+      defaultPrice: PropTypes.number,
+      description: PropTypes.string,
+      imageId: PropTypes.string,
+    }),
+  }),
 };
 export default RecommendedItem;
